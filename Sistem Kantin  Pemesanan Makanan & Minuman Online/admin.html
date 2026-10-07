@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Canteen Admin - Multi Tenant Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="canteen-container admin-mode">
+    <header class="app-header">
+      <div class="header-content">
+        <span class="badge-tag tag-admin">Kantin Control Panel</span>
+        <h1>Dashboard Dapur & Pengelola Stand Kantin</h1>
+        <p>Filter pesanan berdasarkan Stand/Tenant, kelola antrean dapur, dan perbarui status pesanan.</p>
+      </div>
+    </header>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-title">Total Pesanan</span>
+        <span class="kpi-number" id="stat-total">0</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Pesanan Masuk</span>
+        <span class="kpi-number" id="stat-masuk">0</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Sedang Dimasak</span>
+        <span class="kpi-number" id="stat-dimasak">0</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-title">Siap Diambil</span>
+        <span class="kpi-number" id="stat-siap">0</span>
+      </div>
+    </div>
+
+    <main class="card-box full-width">
+      <div class="toolbar-flex">
+        <div class="search-inputs">
+          <input type="text" id="search-input" placeholder="Cari No. Antrean, Nama, atau Menu..." onkeyup="renderTabelAdmin()">
+          <select id="filter-stand" onchange="renderTabelAdmin()">
+            <option value="semua">Semua Stand / Tenant</option>
+            <option value="Stand 01 - Warung Mas Budi (Olahan Nasi & Ayam)">Stand 01 - Mas Budi</option>
+            <option value="Stand 02 - Bakso & Mie Ayam Pak Joko">Stand 02 - Pak Joko</option>
+            <option value="Stand 03 - Kedai Aneka Minuman Pok Inah">Stand 03 - Pok Inah</option>
+          </select>
+          <select id="filter-status" onchange="renderTabelAdmin()">
+            <option value="semua">Semua Status Dapur</option>
+            <option value="Masuk">Masuk</option>
+            <option value="Dimasak">Dimasak</option>
+            <option value="Siap Diambil">Siap Diambil</option>
+            <option value="Selesai">Selesai</option>
+          </select>
+        </div>
+        <button class="btn-danger-outline" onclick="resetDataKantin()">Reset Dapur</button>
+      </div>
+
+      <div class="table-frame">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Antrean & Pemesan</th>
+              <th>Stand & Detail Menu</th>
+              <th>Metode Bayar</th>
+              <th>Status Dapur</th>
+              <th>Update Pesan & Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tabel-admin-body">
+            <!-- Data dimuat via JS -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="script-admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Canteen Order System - Multi Tenant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="canteen-container">
+    <header class="app-header">
+      <div class="header-content">
+        <span class="badge-tag">E-Canteen Multi-Stand</span>
+        <h1>Pemesanan Makanan & Minuman Online</h1>
+        <p>Pilih stand penjual, tentukan menu pilihan Anda, dan pantau status antrean dapur secara real-time.</p>
+      </div>
+    </header>
+
+    <main class="grid-layout">
+      <!-- Section Left: Menu & Form Order -->
+      <section class="card-box">
+        <div class="card-title">
+          <h2>Formulir Pesanan Menu</h2>
+        </div>
+        <form id="form-pesanan">
+          <div class="form-field">
+            <label for="namaPemesan">Nama Pemesan & Nomor Meja</label>
+            <input type="text" id="namaPemesan" placeholder="Contoh: Messi (Meja No. 10)" required>
+          </div>
+
+          <div class="form-field">
+            <label for="pilihanStand">Pilih Stand / Tenant Penjual</label>
+            <select id="pilihanStand" onchange="loadMenuByStand()" required>
+              <option value="">-- Pilih Stand / Tenant --</option>
+              <option value="Stand 01 - Warung Mas Budi (Olahan Nasi & Ayam)">Stand 01 - Warung Mas Budi (Olahan Nasi & Ayam)</option>
+              <option value="Stand 02 - Bakso & Mie Ayam Pak Joko">Stand 02 - Bakso & Mie Ayam Pak Joko</option>
+              <option value="Stand 03 - Kedai Aneka Minuman Pok Inah">Stand 03 - Kedai Aneka Minuman Pok Inah</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label>Pilih Menu yang Tersedia</label>
+            <div id="container-menu" class="menu-options">
+              <p class="text-placeholder">Silakan pilih Stand / Tenant terlebih dahulu.</p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="jumlah">Jumlah Porsi</label>
+              <input type="number" id="jumlah" min="1" max="20" value="1" required>
+            </div>
+            <div class="form-field">
+              <label for="pembayaran">Metode Bayar</label>
+              <select id="pembayaran" required>
+                <option value="QRIS / E-Wallet">QRIS / E-Wallet</option>
+                <option value="Tunai / Cash">Tunai / Cash</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="catatan">Catatan Khusus (Opsional)</label>
+            <input type="text" id="catatan" placeholder="Contoh: Pedas sedang, esnya sedikit saja...">
+          </div>
+
+          <button type="submit" class="btn-primary-block">Kirim Pesanan Sekarang</button>
+        </form>
+      </section>
+
+      <!-- Section Right: Lacak Pesanan & Antrean -->
+      <section class="card-box">
+        <div class="card-title">
+          <h2>Status Pesanan Saya</h2>
+        </div>
+        <div class="table-frame">
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>No. Antrean</th>
+                <th>Stand & Detail Pesanan</th>
+                <th>Bayar</th>
+                <th>Status Dapur</th>
+                <th>Pesan Dapur</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-user-body">
+              <!-- Data dimuat via JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script-user.js"></script>
+</body>
+</html>
